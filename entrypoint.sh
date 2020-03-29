@@ -2,8 +2,8 @@
 set -e
 echo '--------------------START------------------------'
 
-if [[ -z "$GITHUB_TOKEN" ]]; then
-  echo "Set the GITHUB_TOKEN env variable."
+if [[ -z "$github_token" ]]; then
+  echo "Set the github_token env variable."
   exit 1
 fi
 
@@ -33,7 +33,7 @@ fi
 
 URI="https://api.github.com"
 API_HEADER="Accept: application/vnd.github.v3+json"
-AUTH_HEADER="Authorization: token ${GITHUB_TOKEN}"
+AUTH_HEADER="Authorization: token ${github_token}"
 
 action=$(jq --raw-output .action "$GITHUB_EVENT_PATH")
 state=$(jq --raw-output .review.state "$GITHUB_EVENT_PATH")
