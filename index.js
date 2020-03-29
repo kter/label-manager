@@ -29,7 +29,7 @@ async function run() {
   const hasLeader = false;
   for (const review of approved) {
     const { user: user } = review;
-    if (user.login === $leaderName) {
+    if (user.login === leaderName) {
       hasLeader = true;
       break;
     }
