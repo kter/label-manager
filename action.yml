@@ -1,17 +1,16 @@
 name: 'Label Manager'
 description: 'Automatic labeling according to the number of approvals.'
 inputs:
-  approval-count:
+  approval_count:
     description: 'approval count'
     default: 1
-    required: true
-  leader-name:
+  leader_name:
     description: 'leader name'
     # TODO: no require
     required: true
-  github-token:
+  github_token:
     required: true
-  github-repository:
+  github_repository:
     required: true
 runs:
   using: 'docker'
