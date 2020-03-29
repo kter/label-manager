@@ -10,8 +10,6 @@ inputs:
     required: true
   github_token:
     required: true
-  github_repository:
-    required: true
 runs:
   using: 'docker'
   image: 'Dockerfile'
@@ -19,7 +17,6 @@ runs:
     - ${{ inputs.approval_count }}
     - ${{ inputs.leader_name }}
     - ${{ inputs.github_token }}
-    - ${{ inputs.github_repository }}
 branding:
   icon: 'tag'
   color: 'gray-dark'

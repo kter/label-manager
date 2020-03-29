@@ -9,12 +9,12 @@ if [[ -z "$INPUT_GITHUB_TOKEN" ]]; then
   exit 1
 fi
 
-if [[ -z "$IMPUT_GITHUB_REPOSITORY" ]]; then
+if [[ -z "$GITHUB_REPOSITORY" ]]; then
   echo "Set the GITHUB_REPOSITORY env variable."
   exit 1
 fi
 
-if [[ -z "$INPUT_GITHUB_EVENT_PATH" ]]; then
+if [[ -z "$GITHUB_EVENT_PATH" ]]; then
   echo "Set the GITHUB_EVENT_PATH env variable."
   exit 1
 fi
