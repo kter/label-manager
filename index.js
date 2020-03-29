@@ -13,7 +13,7 @@ try {
   console.log(`Approval Count: ${approvalCount}`);
   console.log(`Leader Name: ${leaderName}`);
 
-  const reviews = github.pulls.listReviews({
+  const reviews = octokit.pulls.listReviews({
     owner: github.context.repo.owner,
     repo: github.context.repo.repo,
     pull_number: github.context.payload.pull_request.number
