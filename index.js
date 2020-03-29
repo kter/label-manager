@@ -10,10 +10,8 @@ try {
 
   const approvalCount = core.getInput('approval_count');
   const leaderName = core.getInput('leader_name');
-  const githubToken = core.getInput('github_token');
   console.log(`Approval Count: ${approvalCount}`);
   console.log(`Leader Name: ${leaderName}`);
-  console.log(`Github Count: ${approvalCount}`);
 
   core.setOutput("time", time);
   // Get the JSON webhook payload for the event that triggered the workflow

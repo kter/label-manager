@@ -13,10 +13,6 @@ inputs:
 runs:
   using: 'node12'
   main: 'index.js'
-  args:
-    - ${{ inputs.approval_count }}
-    - ${{ inputs.leader_name }}
-    - ${{ inputs.github_token }}
 branding:
   icon: 'tag'
   color: 'gray-dark'
