@@ -13,6 +13,15 @@ try {
   console.log(`Approval Count: ${approvalCount}`);
   console.log(`Leader Name: ${leaderName}`);
 
+  const reviews = github.pulls.listReviews({
+    github.context.repo.owner,
+    github.context.repo.repo,
+    github.context.payload.pull_request.number
+  });
+  console.log(`Reviews: ${reviews}`);
+  const reviewCount = reviews.length;
+  console.log(`reviewCount: ${reviewCount}`);
+
   // Get the JSON webhook payload for the event that triggered the workflow
 
   const payload = JSON.stringify(github.context.payload, undefined, 2)
