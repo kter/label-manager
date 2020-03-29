@@ -14,9 +14,9 @@ try {
   console.log(`Leader Name: ${leaderName}`);
 
   const reviews = github.pulls.listReviews({
-    github.context.repo.owner,
-    github.context.repo.repo,
-    github.context.payload.pull_request.number
+    owner: github.context.repo.owner,
+    repo: github.context.repo.repo,
+    pull_number: github.context.payload.pull_request.number
   });
   console.log(`Reviews: ${reviews}`);
   const reviewCount = reviews.length;
