@@ -5,7 +5,7 @@ try {
   const myToken = core.getInput('github_token');
   const octokit = new github.GitHub(myToken);
   const context = github.context;
-  console.log(`context: ${JSON.stringify(context)}`);
+  // console.log(`context: ${JSON.stringify(context)}`);
 
 
   const approvalCount = core.getInput('approval_count');
