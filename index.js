@@ -46,13 +46,13 @@ async function run() {
   }
   console.log(`hasLeader: ${hasLeader}`);
 
-    const hasLeaderReviewLabel = pullRequest.labels.find(label => {
+    const hasLeaderReviewLabel = github.context.payload.pull_request.labels.find(label => {
       return label.name === LeaderReviewLabel;
     });
-    const hasDeveloperReviewLabel = pullRequest.labels.find(label => {
+    const hasDeveloperReviewLabel = github.context.payload.pull_request.labels.find(label => {
       return label.name === DeveloperReviewLabel;
     });
-    const hasReadyToMergeLabel = pullRequest.labels.find(label => {
+    const hasReadyToMergeLabel = github.context.payload.pull_request.labels.find(label => {
       return label.name === ReadyToMergeLabel;
     });
   if (approvalCount > reviewCount && hasLeader) {
