@@ -12,7 +12,7 @@ inputs:
     required: true
 runs:
   using: 'node12'
-  image: 'index.js'
+  main: 'index.js'
   args:
     - ${{ inputs.approval_count }}
     - ${{ inputs.leader_name }}
