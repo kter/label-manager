@@ -16,10 +16,10 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ inputs.approval-count }}
-    - ${{ inputs.leader-name }}
-    - ${{ inputs.github-token }}
-    - ${{ inputs.github-repository }}
+    - ${{ inputs.approval_count }}
+    - ${{ inputs.leader_name }}
+    - ${{ inputs.github_token }}
+    - ${{ inputs.github_repository }}
 branding:
   icon: 'tag'
   color: 'gray-dark'
