@@ -11,15 +11,6 @@ async function run() {
   const context = github.context;
   // console.log(`context: ${JSON.stringify(context)}`);
 
-  // TEST
-  await octokit.issues.addLabels({
-    owner: github.context.repo.owner,
-    repo: github.context.repo.repo,
-    issue_number: github.context.payload.pull_request.number,
-    labels: ['test'],
-  });
-  // TEST
-
   if (github.context.payload.pull_request.state !== 'open') {
     return;
   }
@@ -42,7 +33,7 @@ async function run() {
     return review.state === 'APPROVED';
   });
 
-  const hasLeader = false;
+  let hasLeader = false;
   for (const review of approved) {
     const { user: user } = review;
     if (user.login === leaderName) {
