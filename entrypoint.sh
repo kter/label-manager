@@ -4,17 +4,17 @@ echo '--------------------START------------------------'
 env
 echo '--------------------START------------------------'
 
-if [[ -z "$github_token" ]]; then
-  echo "Set the github_token env variable."
+if [[ -z "$INPUT_GITHUB_TOKEN" ]]; then
+  echo "Set the GITHUB_TOKEN env variable."
   exit 1
 fi
 
-if [[ -z "$GITHUB_REPOSITORY" ]]; then
+if [[ -z "$IMPUT_GITHUB_REPOSITORY" ]]; then
   echo "Set the GITHUB_REPOSITORY env variable."
   exit 1
 fi
 
-if [[ -z "$GITHUB_EVENT_PATH" ]]; then
+if [[ -z "$INPUT_GITHUB_EVENT_PATH" ]]; then
   echo "Set the GITHUB_EVENT_PATH env variable."
   exit 1
 fi
@@ -22,10 +22,6 @@ fi
 $ADD_LABEL="Ready To Merge"
 
 readyToMergeLabel=$ADD_LABEL
-if [[ -n "$LABEL_NAME" ]]; then
-  echo "Warning: Plase define the ADD_LABEL variable instead of the deprecated LABEL_NAME."
-  readyToMergeLabel=$LABEL_NAME
-fi
 
 if [[ -z "$readyToMergeLabel" ]]; then
   echo "Set the ADD_LABEL or the LABEL_NAME env variable."
