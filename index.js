@@ -46,16 +46,16 @@ async function run() {
   }
   console.log(`hasLeader: ${hasLeader}`);
 
-    const hasLeaderReviewLabel = github.context.payload.pull_request.labels.find(label => {
-      return label.name === LeaderReviewLabel;
-    });
-    const hasDeveloperReviewLabel = github.context.payload.pull_request.labels.find(label => {
-      return label.name === DeveloperReviewLabel;
-    });
-    const hasReadyToMergeLabel = github.context.payload.pull_request.labels.find(label => {
-      return label.name === ReadyToMergeLabel;
-    });
-  if (approvalCount > reviewCount && hasLeader) {
+  const hasLeaderReviewLabel = github.context.payload.pull_request.labels.find(label => {
+    return label.name === LeaderReviewLabel;
+  });
+  const hasDeveloperReviewLabel = github.context.payload.pull_request.labels.find(label => {
+    return label.name === DeveloperReviewLabel;
+  });
+  const hasReadyToMergeLabel = github.context.payload.pull_request.labels.find(label => {
+    return label.name === ReadyToMergeLabel;
+  });
+  if (approvalCount < reviewCount && hasLeader) {
     console.log('Ready To Merge');
     // add: Ready To Merge
     // remove: Leader Review
@@ -76,15 +76,13 @@ async function run() {
         name: DeveloperReviewLabel,
       });
     }
-    if (hasReadyToMergeLabel) {
-      await octokit.issues.addLabels({
-        owner: github.context.repo.owner,
-        repo: github.context.repo.repo,
-        issue_number: github.context.payload.pull_request.number,
-        labels: [ReadyToMergeLabel],
-      });
-    }
-  } else if (approvalCount > reviewCount) {
+    await octokit.issues.addLabels({
+      owner: github.context.repo.owner,
+      repo: github.context.repo.repo,
+      issue_number: github.context.payload.pull_request.number,
+      labels: [ReadyToMergeLabel],
+    });
+  } else if (approvalCount < reviewCount) {
     console.log('Leader Review');
     // add: Leader Review
     // remove: Ready To Merge
@@ -105,14 +103,12 @@ async function run() {
         name: DeveloperReviewLabel,
       });
     }
-    if (hasLeaderReviewLabel) {
-      await octokit.issues.addLabels({
-        owner: github.context.repo.owner,
-        repo: github.context.repo.repo,
-        issue_number: github.context.payload.pull_request.number,
-        labels: [LeaderReviewLabel],
-      });
-    }
+    await octokit.issues.addLabels({
+      owner: github.context.repo.owner,
+      repo: github.context.repo.repo,
+      issue_number: github.context.payload.pull_request.number,
+      labels: [LeaderReviewLabel],
+    });
   } else {
     console.log('Developer Review');
     // add: Developer Review
@@ -134,14 +130,12 @@ async function run() {
         name: LeaderReviewLabel,
       });
     }
-    if (hasDeveloperReviewLabel) {
-      await octokit.issues.addLabels({
-        owner: github.context.repo.owner,
-        repo: github.context.repo.repo,
-        issue_number: github.context.payload.pull_request.number,
-        labels: [DeveloperReviewLabel],
-      });
-    }
+    await octokit.issues.addLabels({
+      owner: github.context.repo.owner,
+      repo: github.context.repo.repo,
+      issue_number: github.context.payload.pull_request.number,
+      labels: [DeveloperReviewLabel],
+    });
   }
 
   // Get the JSON webhook payload for the event that triggered the workflow
