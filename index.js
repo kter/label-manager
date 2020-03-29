@@ -1,7 +1,7 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
 
-try {
+async function run() {
   const myToken = core.getInput('github_token');
   const octokit = new github.GitHub(myToken);
   const context = github.context;
@@ -26,6 +26,8 @@ try {
 
   // const payload = JSON.stringify(github.context.payload, undefined, 2)
   // console.log(`The event payload: ${payload}`);
-} catch (error) {
-  core.setFailed(error.message);
 }
+
+run().catch(error => {
+  core.setFailed(error.message);
+});
