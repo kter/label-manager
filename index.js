@@ -7,8 +7,18 @@ async function run() {
   const ReadyToMergeLabel = 'Ready To Merge';
   const LeaderReviewLabel = 'Leader Review';
   const DeveloperReviewLabel = 'Developer Review';
+  // TODO: 分割代入？で変数を短くする
   const context = github.context;
   // console.log(`context: ${JSON.stringify(context)}`);
+
+  // TEST
+  await octokit.issues.addLabels({
+    owner: github.context.repo.owner,
+    repo: github.context.repo.repo,
+    issue_number: github.context.payload.pull_request.number,
+    labels: ['test'],
+  });
+  // TEST
 
   if (github.context.payload.pull_request.state !== 'open') {
     return;
@@ -57,9 +67,6 @@ async function run() {
   });
   if (approvalCount < reviewCount && hasLeader) {
     console.log('Ready To Merge');
-    // add: Ready To Merge
-    // remove: Leader Review
-    // remove: Developer Review
     if (hasLeaderReviewLabel) {
       await octokit.issues.removeLabel({
         owner: github.context.repo.owner,
@@ -84,9 +91,6 @@ async function run() {
     });
   } else if (approvalCount < reviewCount) {
     console.log('Leader Review');
-    // add: Leader Review
-    // remove: Ready To Merge
-    // remove: Developer Review
     if (hasReadyToMergeLabel) {
       await octokit.issues.removeLabel({
         owner: github.context.repo.owner,
@@ -111,9 +115,6 @@ async function run() {
     });
   } else {
     console.log('Developer Review');
-    // add: Developer Review
-    // remove: Ready To Merge
-    // remove: Leader Review
     if (hasReadyToMergeLabel) {
       await octokit.issues.removeLabel({
         owner: github.context.repo.owner,
