@@ -18,7 +18,7 @@ async function run() {
     repo: github.context.repo.repo,
     pull_number: github.context.payload.pull_request.number
   });
-  console.log(`Reviews: ${reviews}`);
+  console.log(`Reviews: ${JSON.stringify(reviews)}`);
   const reviewCount = reviews.length;
   console.log(`reviewCount: ${reviewCount}`);
 
