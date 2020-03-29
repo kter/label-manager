@@ -5,7 +5,7 @@ try {
   const myToken = core.getInput('github_token');
   const octokit = new github.GitHub(myToken);
   const context = github.context;
-  console.log(`context: ${context}`);
+  console.log(`context: ${JSON.stringify(context)}`);
 
 
   const approvalCount = core.getInput('approval_count');
@@ -13,7 +13,6 @@ try {
   console.log(`Approval Count: ${approvalCount}`);
   console.log(`Leader Name: ${leaderName}`);
 
-  core.setOutput("time", time);
   // Get the JSON webhook payload for the event that triggered the workflow
 
   const payload = JSON.stringify(github.context.payload, undefined, 2)
