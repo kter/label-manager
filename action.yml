@@ -11,8 +11,8 @@ inputs:
   github_token:
     required: true
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
+  using: 'node12'
+  image: 'index.js'
   args:
     - ${{ inputs.approval_count }}
     - ${{ inputs.leader_name }}
