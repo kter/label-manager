@@ -10,7 +10,7 @@ async function run() {
   const context = github.context;
   // console.log(`context: ${JSON.stringify(context)}`);
 
-  if (context.payload.pullRequest.state !== 'open') {
+  if (github.context.payload.pull_request.state !== 'open') {
     return;
   }
 
