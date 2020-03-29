@@ -19,9 +19,9 @@ if [[ -z "$GITHUB_EVENT_PATH" ]]; then
   exit 1
 fi
 
-$ADD_LABEL="Ready To Merge"
+ADD_LABEL="Ready To Merge"
 
-readyToMergeLabel=$ADD_LABEL
+readyToMergeLabel="$ADD_LABEL"
 
 if [[ -z "$readyToMergeLabel" ]]; then
   echo "Set the ADD_LABEL or the LABEL_NAME env variable."
