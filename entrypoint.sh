@@ -2,6 +2,7 @@
 set -e
 echo '--------------------START------------------------'
 env
+echo '--------------------START------------------------'
 
 if [[ -z "$github_token" ]]; then
   echo "Set the github_token env variable."
