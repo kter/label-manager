@@ -22,6 +22,22 @@ async function run() {
   const reviewCount = reviews.length;
   console.log(`reviewCount: ${reviewCount}`);
 
+  const approved = reviews.filter(review => {
+    return review.state === 'APPROVED';
+  });
+
+  const hasLeader = false;
+  for (const review of approved) {
+    const { user: user } = review;
+    if (user.login === $leaderName) {
+      hasLeader = true;
+      break;
+    }
+  } 
+  console.log(`hasLeader: ${hasLeader}`);
+
+  // if (approvalCount > reviewCount && )
+
   // Get the JSON webhook payload for the event that triggered the workflow
 
   // const payload = JSON.stringify(github.context.payload, undefined, 2)
