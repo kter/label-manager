@@ -5,7 +5,7 @@ async function run() {
   const myToken = core.getInput('github_token');
   const octokit = new github.GitHub(myToken);
   const context = github.context;
-  // console.log(`context: ${JSON.stringify(context)}`);
+  console.log(`context: ${JSON.stringify(context)}`);
 
 
   const approvalCount = core.getInput('approval_count');
@@ -36,7 +36,13 @@ async function run() {
   } 
   console.log(`hasLeader: ${hasLeader}`);
 
-  // if (approvalCount > reviewCount && )
+  if (approvalCount > reviewCount && hasLeader) {
+    console.log('Ready To Merge');
+  } else if (approvalCount > reviewCount) {
+    console.log('Leader Review');
+  } else {
+    console.log('Developer Review');
+  }
 
   // Get the JSON webhook payload for the event that triggered the workflow
 
