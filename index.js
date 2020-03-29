@@ -13,7 +13,7 @@ try {
   console.log(`Approval Count: ${approvalCount}`);
   console.log(`Leader Name: ${leaderName}`);
 
-  const reviews = octokit.pulls.listReviews({
+  const { reviews } = await octokit.pulls.listReviews({
     owner: github.context.repo.owner,
     repo: github.context.repo.repo,
     pull_number: github.context.payload.pull_request.number
@@ -24,8 +24,8 @@ try {
 
   // Get the JSON webhook payload for the event that triggered the workflow
 
-  const payload = JSON.stringify(github.context.payload, undefined, 2)
-  console.log(`The event payload: ${payload}`);
+  // const payload = JSON.stringify(github.context.payload, undefined, 2)
+  // console.log(`The event payload: ${payload}`);
 } catch (error) {
   core.setFailed(error.message);
 }
